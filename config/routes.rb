@@ -12,11 +12,16 @@ Rails.application.routes.draw do
       sessions: "admin/sessions"
     }
 
-  root to: 'homes#top'
+  namespace :public, path: '/' do
+    root to: "homes#top"
+    get "/about" => "homes#about"
+    get "/user/confirmation" => "customers#confirmation"
+    get "/mypage" => "users#show"
+    patch "/mypage" => "users#unsubscribe"
+    resources "/cosplay_images", only: [:new, :index, :show, :edit]do
+      resources "/comments", only: [:create, :destroy]
+    end
 
-  resources :cosplay_images, only: [:new, :index, :show, :edit]do
-    resources :comments, only: [:create, :destroy]
   end
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
