@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  # 顧客用
+  # ユーザー用
     devise_for :users,skip: [:passwords], controllers: {
       registrations: "public/registrations",
       sessions: 'public/sessions'
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     get "/mypage" => "users#show"
     resources "users", only: [:index, :show]
     patch "/mypage" => "users#unsubscribe"
-    resources "cosplay_images", only: [:new, :index, :show, :edit]do
+    resources "cosplay_images", only: [:new, :create, :index, :show, :edit]do
       resources "comments", only: [:create, :destroy]
     end
 

@@ -1,0 +1,39 @@
+<table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Image</th>
+      <th>Name</th>
+      <th>Character</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cosplay_images.each do |cosplay_image| %>
+      <tr>
+        <td><%= link_to public_cosplay_image_path(cosplay_image.user) do %>
+                <%= image_tag cosplay_image.get_image(100,100) %>
+        </td><% end %>
+        <td><%= cosplay_image.user.name %></td>
+        <td><%= cosplay_image.character %></td>
+        <!--<td>< % if book.favorited_by?(current_user) %>-->
+          <p>
+            <!--< %= link_to book_favorites_path(book), method: :delete do %>-->
+              <!--♥< %= book.favorites.count %>-->
+            <!--< % end %>-->
+          </p>
+        <!--< % else %>-->
+          <p>
+            <!--< %= link_to book_favorites_path(book), method: :post do %>-->
+              <!--♡< %= book.favorites.count %>-->
+            <!--< % end %>-->
+          </p>
+        <!--< % end %></td>-->
+        <td>
+          <p>
+            <!--< %= "コメント数:#{book.book_comments.count}" %>-->
+          </p>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

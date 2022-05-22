@@ -16,25 +16,29 @@
       <%= f.label :email %>
     </div>
     <div class="col-sm-9">
-      <%= f.email_field :email, autofocus: true, autocomplete: "off", placeholder: "sample@example.com", class: "form-control"%>
+      <%= f.email_field :email, autofocus: true, autocomplete: "off", placeholder: "sample@example.com", class: "form-control" %>
     </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <div class="col-sm-3">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
+    </div>
+    <div class="col-sm-9">
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="col-sm-3">
+      <%= f.label :password_confirmation %>
+    </div>
+    <div class="col-sm-9">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+    <div class="actions">
+      <%= f.submit "Sign up", class: "btn btn-outline-success" %>
+    </div>
+  <% end %>
 
-<%= render "public/shared/links" %>
+  <%= render "public/shared/links" %>
