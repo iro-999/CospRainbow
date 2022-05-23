@@ -1,9 +1,9 @@
 class CosplayImage < ApplicationRecord
-  
+
   has_one_attached :image
   belongs_to :user
   has_many :comments, dependent: :destroy
-  
+
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -11,5 +11,9 @@ class CosplayImage < ApplicationRecord
     end
     image
   end
-  
+
+  validates :title, presence: true
+  validates :character, presence: true
+  validates :image, presence: true
+
 end

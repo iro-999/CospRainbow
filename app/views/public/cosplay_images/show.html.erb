@@ -1,13 +1,11 @@
 <div class="row">
-<div class="col-sm-8">
-	<h2>Cosplay image</h2>
-	<table class='table'>
-	  <tr>
-      <td><%= link_to (@cosplay_image.user) do %>
-        <%= image_tag @cosplay_image.user.get_profile_image(100,100) %><br>
-        <%= @cosplay_image.user.name %>
-        <% end %>
-      </td>
+  <div class="col-sm-8">
+	  <h2><i class="fas fa-camera"></i>Cosplay image</h2>
+  </div>
+  <div class="col-sm-4"></div>
+
+
+
       <!--<td>< % if @book.favorited_by?(current_user) %>-->
       <!--  <p>-->
       <!--    < %= link_to book_favorites_path(@book), method: :delete do %>-->
@@ -21,55 +19,39 @@
       <!--    < % end %>-->
       <!--  </p>-->
       <!--< % end %></td>-->
-      <td><%= link_to @book.title, @book %></td>
-      <td><%= @book.body %></td>
-      <% if @book.user == current_user %>
-        <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
-        <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
-      <% end %>
-    </tr>
-  </table>
-  <div>
-  <table>
-    <tr>
-      <td><% @book.book_comments.each do |book_comment| %>
-        <%= link_to(book_comment.user) do %>
-        <%= image_tag book_comment.user.get_profile_image(100,100) %><br>
-        <%= book_comment.user.name %>
-        <% end %></td>
-        <p><td><%= book_comment.comment %></td>
-        <% if book_comment.user == current_user %>
-          <td><%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete, class: "btn btn-sm btn-danger destroy_book_#{@book.id}" %></td></p>
-        <% end %>
-      <% end %>
-    </tr>
-  </table>
-  </div>
-  <div>
-    <%= form_with model: [@book, @book_comment] do |f| %>
-      <%= f.text_area :comment, rows: '5' %>
-      <%= f.submit "送信" %>
 
+  <div class="col-sm-6">
+    <%= link_to (@cosplay_image.user) do %>
+      <%= image_tag @cosplay_image.user.get_profile_image(100,100) %>
+      <%= @cosplay_image.user.name %>
+    <% end %>
+    <%= @cosplay_image.title %>
+    <%= @cosplay_image.character %>
+    <%= @cosplay_image.body %>
+    <% if @book.user == current_user %>
+      <%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %>
+      <%= link_to 'Destroy', @cosplay_image, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %>
     <% end %>
   </div>
-</div>
-</div>
-</div>
+  <div class="col-sm-6">
+    <%= image_tag @cosplay_image.get_image %>
+  </div>
 
 <div>
-<p>コメント件数：<%= @cosplay_image.comments.count %></p>
-<% @cosplay_image.comments.each do |comment| %>
-  <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
-  <%= comment.user.name %>
-  <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-<% end %>
-<% if comment.user == current_user %>
-  <%= link_to "削除", cosplay_image_comment_path(comment.cosplay_image, comment), method: :delete %>
-<% end %>
+  <p>Comment：<%= @cosplay_image.comments.count %></p>
+  <% @cosplay_image.comments.each do |comment| %>
+    <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
+    <%= comment.user.name %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+  <% end %>
+  <% if comment.user == current_user %>
+    <%= link_to "Destroy", cosplay_image_comment_path(comment.cosplay_image, comment), method: :delete %>
+  <% end %>
 </div>
 <div>
-<%= form_with model: [@cosplay_image, @comment] do |f| %>
-  <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-  <%= f.submit "送信する" %>
-<% end %>
+  <%= form_with model: [@cosplay_image, @comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "Comment here" %>
+    <%= f.submit "To comment" %>
+  <% end %>
+</div>
 </div>

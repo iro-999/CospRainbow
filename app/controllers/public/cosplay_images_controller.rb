@@ -14,12 +14,29 @@ class Public::CosplayImagesController < ApplicationController
     @cosplay_images = CosplayImage.all
   end
 
+  def edit
+    @cosplay_image = CosplayImage.find(params[:id])
+    if @cosplay_image.user == current_user
+      render "edit"
+    else
+      redirect_to public_cosplay_images_path
+    end
+  end
+
+  def update
+    @cosplay_image = CosplayImage.find(params[:id])
+    if @cosplay_image.update(cosplay_image_params)
+      redirect_to public_cosplay_image_path(@book), notice: "You have updated book successfully."
+    else
+      render "edit"
+    end
+  end
 
   def create
     @cosplay_image = CosplayImage.new(cosplay_image_params)
     @cosplay_image.user_id = current_user.id
     if @cosplay_image.save
-      redirect_to public_cosplay_image(@cosplay_image), notice: "You have created book successfully."
+      redirect_to public_cosplay_image(@cosplay_image), notice: "You have created cosplay image successfully."
     else
       @cosplay_images = CosplayImage.all
       render 'index'
