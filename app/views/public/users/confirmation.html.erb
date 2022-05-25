@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-sm-3">
+    <h2><i class="fas fa-user-alt-slash"></i>Withdraw</h2>
+  </div>
+  <div class="col-sm-9"></div>
+</div>
+
+<div class="row">
+  <div class="col-sm-3"></div>
+  <div class="col-sm-9">
+    <p>退会するとコスプレ写真の投稿＆閲覧、<br>
+       ユーザー情報が閲覧できなくなります。<br>
+       退会する場合は、「<i class="fas fa-user-alt-slash"></i>Withdraw」をクリックしてください。</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-3"></div>
+  <%= link_to public_user_path(current_user), class: "btn btn-success col-sm-2 mx-3" do %>
+    <i class="fas fa-user-times"></i> Cancel
+  <% end %>
+  <%= link_to public_user_path(current_user), method: :patch, class: "btn btn-danger col-sm-2 mx-3" do %>
+    <i class="fas fa-user-alt-slash"></i>Withdraw
+  <% end %>
+  <div class="col-sm-3"></div>
+</div>

@@ -16,10 +16,8 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get "/about" => "homes#about"
     get "/user/confirmation" => "users#confirmation"
-    get "/mypage" => "users#show"
-    resources "users", only: [:index, :show]
-    patch "/mypage" => "users#unsubscribe"
-    resources "cosplay_images", only: [:new, :create, :index, :show, :edit]do
+    resources "users", only: [:index, :show, :edit, :update, :confirmation]
+    resources "cosplay_images", only: [:new, :create, :index, :show, :edit, :destroy]do
       resources "comments", only: [:create, :destroy]
     end
 

@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-sm-4">
+    <h2><i class="fas fa-user-edit"></i>User editing</h2>
+  </div>
+  <div class="col-sm-8"></div>
+</div>
+
+<%= form_with model: @user, url: public_user_path(@user), local:true do |f| %>
+  <div class="row">
+    <div class="col-sm-3">
+      <%= f.label :name, "Name" %>
+    </div>
+    <div class="col-sm-3">
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="col-sm-6"></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <%= f.label :image, "Profile image", class: "my-3" %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.file_field :profile_image, accept: "image/*", class: "form-control-file my-3" %>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-3">
+      <%= button_tag type: "submit", class: "btn btn-outline-success" do %>
+        <i class="fas fa-user-check"></i> Save changes
+      <% end %>
+    </div>
+    <div class="col-sm-3">
+      <%= link_to public_user_confirmation_path, class: "btn btn-outline-danger" do %>
+        <i class="fas fa-user-alt-slash"></i>Withdraw
+      <% end %>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+<% end %>
