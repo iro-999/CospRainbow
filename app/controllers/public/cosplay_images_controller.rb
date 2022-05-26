@@ -11,7 +11,7 @@ class Public::CosplayImagesController < ApplicationController
   end
 
   def index
-    @cosplay_images = CosplayImage.all
+    @cosplay_images = CosplayImage.order(id: "DESC")
   end
 
   def edit

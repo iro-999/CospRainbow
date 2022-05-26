@@ -5,26 +5,12 @@
   <div class="col-sm-4"></div>
 </div>
 
-
-      <!--<td>< % if @book.favorited_by?(current_user) %>-->
-      <!--  <p>-->
-      <!--    < %= link_to book_favorites_path(@book), method: :delete do %>-->
-      <!--      ♥< %= @book.favorites.count %>-->
-      <!--    < % end %>-->
-      <!--  </p>-->
-      <!--< % else %>-->
-      <!--  <p>-->
-      <!--    < %= link_to book_favorites_path(@book), method: :post do %>-->
-      <!--      ♡< %= @book.favorites.count %>-->
-      <!--    < % end %>-->
-      <!--  </p>-->
-      <!--< % end %></td>-->
 <div class="row">
   <div class="col-sm-2">
     <%= image_tag @cosplay_image.user.get_profile_image(100,100) %>
   </div>
   <div class="col-sm-3 mt-5">
-    <%= link_to public_user_path(@cosplay_image) do %>
+    <%= link_to public_user_path(@cosplay_image.user), class: "link" do %>
       <%= @cosplay_image.user.name %>
     <% end %>
   </div>
@@ -52,6 +38,23 @@
   <div class="col-sm-7"></div>
 </div>
 <div class="row">
+  <div class="col-sm-2 my-3">Favorit</div>
+  <% if @cosplay_image.favorited_by?(current_user) %>
+    <div class="col-sm-3 my-3">
+      <%= link_to public_cosplay_image_favorites_path(@cosplay_image), method: :delete, class: "link" do %>
+        ♥<%= @cosplay_image.favorites.count %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="col-sm-3 my-3">
+      <%= link_to public_cosplay_image_favorites_path(@cosplay_image), method: :post, class: "link" do %>
+        ♡<%= @cosplay_image.favorites.count %>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="col-sm-7"></div>
+</div>
+<div class="row">
   <div class="col-sm-2"></div>
     <% if @cosplay_image.user == current_user %>
       <div class="col-sm-2 my-3">
@@ -64,29 +67,36 @@
   <div class="col-sm-6"></div>
 </div>
 <div class="row">
-  <div class="col-sm-3"></div>
-  <div class="col-sm-6">
-    <%= image_tag @cosplay_image.get_image(100,100), class: "cosplay_image" %>
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8">
+    <%= image_tag @cosplay_image.image, class: "cosplay_image" %>
   </div>
-  <div class="col-sm-3"></div>
+  <div class="col-sm-2"></div>
 </div>
 
 
-<!--<div>-->
-<!--  <p>Comment：< %= @cosplay_image.comments.count %></p>-->
-<!--  < % @cosplay_image.comments.each do |comment| %>-->
-<!--    <p>< %= image_tag comment.user.get_profile_image(100,100) %></p>-->
-<!--    < %= comment.user.name %>-->
-<!--    < %= comment.created_at.strftime('%Y/%m/%d') %>< %= comment.comment %>-->
-<!--  < % end %>-->
-<!--  < % if comment.user == current_user %>-->
-<!--    < %= link_to "Destroy", cosplay_image_comment_path(comment.cosplay_image, comment), method: :delete %>-->
-<!--  < % end %>-->
-<!--</div>-->
-<!--<div>-->
-<!--  < %= form_with model: [@cosplay_image, @comment] do |f| %>-->
-<!--    < %= f.text_area :comment, rows: '5', placeholder: "Comment here" %>-->
-<!--    < %= f.submit "To comment" %>-->
-<!--  < % end %>-->
-<!--</div>-->
-<!--</div>-->
+
+<div>
+  <p>Comment：<%= @cosplay_image.comments.count %></p>
+
+<table>
+  <% @cosplay_image.comments.each do |comment| %>
+    <tr>
+      <td>
+        <%= image_tag comment.user.get_profile_image(100,100) %>
+        <%= comment.user.name %>
+        <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+
+        <% if comment.user == current_user %>
+          <%= link_to "Destroy", public_cosplay_image_comment_path(comment.cosplay_image, comment), method: :delete, data: { confirm: "Can I delete it?" }, class: "btn btn-sm btn-outline-danger" %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<div>
+  <%= form_with model: [@cosplay_image, @comment], url: public_cosplay_image_comments_path(@cosplay_image) do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "Comment here", class: "form_control" %>
+    <%= f.submit "To comment", class: "btn btn-sm btn-outline-success" %>
+  <% end %>
+</div>

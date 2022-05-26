@@ -2,8 +2,13 @@
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
 .cosplay_image {
-  width: 500px;
-  height: 500px;
+  width: 700px;
+  height: 700px;
   object-fit: contain;
   text-align : center;
+}
+
+.link {
+  text-decoration: none;
+  color: #38b48b ;
 }

@@ -29,5 +29,21 @@
   <div class="col-sm-3">
     <i class="fas fa-camera fa-2x"></i>Cosplay images
   </div>
-  <div class="col-sm-9"><%= @cosplay_images %></div>
+  <div class="col-sm-9"></div>
 </div>
+
+<tbody>
+    <% @cosplay_images.each do |cosplay_image| %>
+      <tr>
+        <td>
+          <%= link_to public_cosplay_image_path(cosplay_image) do %>
+            <%= image_tag cosplay_image.get_image(100,100) %>
+          <% end %>
+        </td>
+        <td>
+          <%= cosplay_image.character %>
+        </td>
+      </tr>
+    <% end %>
+  <tbody>
+</table>

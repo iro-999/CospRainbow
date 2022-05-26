@@ -5,12 +5,12 @@ class Public::CommentsController < ApplicationController
     comment = current_user.comments.new(comment_params)
     comment.cosplay_image_id = cosplay_image.id
     comment.save
-    #redirect_to post_image_path(post_image)
+    redirect_to public_cosplay_image_path(cosplay_image)
   end
-  
+
   def destroy
     Comment.find(params[:id]).destroy
-    #redirect_to cosplay_image_path(params[:post_image_id])
+    redirect_to public_cosplay_image_path(params[:cosplay_image_id])
   end
 
   private

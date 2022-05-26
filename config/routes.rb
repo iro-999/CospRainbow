@@ -17,8 +17,9 @@ Rails.application.routes.draw do
     get "/about" => "homes#about"
     get "/user/confirmation" => "users#confirmation"
     resources "users", only: [:index, :show, :edit, :update, :confirmation]
-    resources "cosplay_images", only: [:new, :create, :index, :show, :edit, :destroy]do
+    resources "cosplay_images" do
       resources "comments", only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end
 
   end

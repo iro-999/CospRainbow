@@ -5,7 +5,9 @@
   <div class="col-sm-4"></div>
 </div>
 
-<%= form_with model: @cosplay_image, url: public_cosplay_image_path, local:true do |f| %>
+<%= render "public/shared/error_messages", resource: @cosplay_image %>
+
+<%= form_with model: @cosplay_image, url: public_cosplay_image_path(@cosplay_image), local:true do |f| %>
   <div class="row">
     <%= f.label :title, "Title", class: "col-sm-2 mx-3 my-1" %>
     <%= f.text_field :title, class: "col-sm-2 mx-3 my-1 form-control" %>

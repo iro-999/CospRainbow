@@ -23,7 +23,7 @@
           <% end %>
         </td>
         <td>
-          <%= link_to public_user_path(cosplay_image.user) do %>
+          <%= link_to public_user_path(cosplay_image.user), class: "link" do %>
             <%= cosplay_image.user.name %>
           <% end %>
         </td>
@@ -34,20 +34,3 @@
     <% end %>
   <tbody>
 </table>
-
-        <!--<td>< % if book.favorited_by?(current_user) %>-->
-          <p>
-            <!--< %= link_to book_favorites_path(book), method: :delete do %>-->
-              <!--♥< %= book.favorites.count %>-->
-            <!--< % end %>-->
-          </p>
-        <!--< % else %>-->
-          <p>
-            <!--< %= link_to book_favorites_path(book), method: :post do %>-->
-              <!--♡< %= book.favorites.count %>-->
-            <!--< % end %>-->
-          </p>
-        <!--< % end %></td>-->
-        <td>
-          <p>
-            <!--< %= "コメント数:#{book.book_comments.count}" %>-->

@@ -3,8 +3,7 @@ class Public::UsersController < ApplicationController
   before_action :ensure_user, only: [:edit, :update, :destroy]
 
   def index
-    @user = User.find(params[:id])
-    @users = User.all
+    @users = User.order(id: "DESC")
   end
 
   def show
