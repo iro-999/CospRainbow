@@ -11,7 +11,7 @@ class Public::CosplayImagesController < ApplicationController
   end
 
   def index
-    @cosplay_images = CosplayImage.order(id: "DESC")
+    @cosplay_images = CosplayImage.order(id: "DESC").page(params[:page]).per(10)
   end
 
   def edit

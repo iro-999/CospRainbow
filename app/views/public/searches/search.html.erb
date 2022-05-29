@@ -1,0 +1,26 @@
+<h2><i class="fas fa-search"></i>Results index</h2>
+
+<table class="table table-hover table-inverse">
+  <!--検索対象モデルがUserの時 -->
+  <% if @range == "User" %>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= image_tag user.get_profile_image(100,100) %></td>
+          <td><%= user.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+    <!--検索対象モデルがUserではない時(= 検索対象モデルがcosplay_imageの時) -->
+    <tbody>
+      <% @cosplay_images.each do |cosplay_image| %>
+        <tr>
+          <td><%= image_tag cosplay_image.get_image(100,100) %></td>
+          <td><%= cosplay_image.title %></td>
+          <td><%= cosplay_image.character %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>

@@ -18,7 +18,7 @@
   <%= link_to public_user_path(current_user), class: "btn btn-success col-sm-2 mx-3" do %>
     <i class="fas fa-user-times"></i> Cancel
   <% end %>
-  <%= link_to public_user_path(current_user), method: :patch, class: "btn btn-danger col-sm-2 mx-3" do %>
+  <%= link_to public_user_unsubscribe_path(current_user), method: :patch, class: "btn btn-danger col-sm-2 mx-3" do %>
     <i class="fas fa-user-alt-slash"></i>Withdraw
   <% end %>
   <div class="col-sm-3"></div>

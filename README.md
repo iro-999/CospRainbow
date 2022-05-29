@@ -18,9 +18,6 @@
 - 投稿されたコスプレ写真を閲覧する時
 - 他のコスプレイヤーと交流する時
 
-## 設計書
-<...>
-
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL

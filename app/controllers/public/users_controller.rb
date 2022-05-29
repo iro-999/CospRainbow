@@ -3,12 +3,12 @@ class Public::UsersController < ApplicationController
   before_action :ensure_user, only: [:edit, :update, :destroy]
 
   def index
-    @users = User.order(id: "DESC")
+    @users = User.all.order(id: "DESC").page(params[:page]).per(10)
   end
 
   def show
     @user = User.find(params[:id])
-    @cosplay_images = @user.cosplay_images
+    @cosplay_images = @user.cosplay_images.page(params[:page])
   end
 
   def edit
@@ -25,7 +25,7 @@ class Public::UsersController < ApplicationController
   end
 
   def unsubscribe
-    @user = current_customer
+    @user = current_user
     @user.update(is_active: false)
     sign_out
     flash[:notice] = "withdraw"
