@@ -7,6 +7,7 @@ class Public::CosplayImagesController < ApplicationController
 
   def show
     @cosplay_image = CosplayImage.find(params[:id])
+    @tags = @cosplay_image.tags
     @comment = Comment.new
   end
 
@@ -36,10 +37,15 @@ class Public::CosplayImagesController < ApplicationController
     @cosplay_image = CosplayImage.new(cosplay_image_params)
     @cosplay_image.user_id = current_user.id
     if @cosplay_image.save
+      tags = Vision.get_image_data(@cosplay_image.image)
+      tags.each do |tag|
+        
+        @cosplay_image.tags.create(name: tag)
+      end
       redirect_to public_cosplay_image_path(@cosplay_image), notice: "You have created cosplay image successfully."
     else
       @cosplay_images = CosplayImage.all
-      render 'index'
+      render 'new'
     end
   end
 

@@ -4,6 +4,7 @@ class CosplayImage < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :tags, dependent: :destroy
 
   def get_image(width, height)
     unless image.attached?

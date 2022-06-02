@@ -100,3 +100,8 @@
     <%= f.submit "To comment", class: "btn btn-sm btn-outline-success" %>
   <% end %>
 </div>
+
+
+<% @tags.each do |tag| %>
+  <%= tag.name %>
+<% end %>
