@@ -55,6 +55,16 @@
   <div class="col-sm-7"></div>
 </div>
 <div class="row">
+  <div class="col-sm-2">Tag</div>
+  <div class="col-sm-3">
+    <% @tags.each do |tag| %>
+      <%= tag.name %>
+    <% end %>
+  </div>
+  <div class="col-sm-7"></div>
+</div>
+
+<div class="row">
   <div class="col-sm-2"></div>
     <% if @cosplay_image.user == current_user %>
       <div class="col-sm-2 my-3">
@@ -74,11 +84,9 @@
   <div class="col-sm-2"></div>
 </div>
 
-
-
 <div>
   <p>Comment：<%= @cosplay_image.comments.count %></p>
-
+</div>
 <table>
   <% @cosplay_image.comments.each do |comment| %>
     <tr>
@@ -100,8 +108,3 @@
     <%= f.submit "To comment", class: "btn btn-sm btn-outline-success" %>
   <% end %>
 </div>
-
-
-<% @tags.each do |tag| %>
-  <%= tag.name %>
-<% end %>
