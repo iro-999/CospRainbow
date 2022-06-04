@@ -27,6 +27,11 @@ class Public::CosplayImagesController < ApplicationController
   def update
     @cosplay_image = CosplayImage.find(params[:id])
     if @cosplay_image.update(cosplay_image_params)
+      @cosplay_image.tags.destroy_all
+      tags = Vision.get_image_data(@cosplay_image.image)
+      tags.each do |tag|
+        @cosplay_image.tags.create(name: tag)
+      end
       redirect_to public_cosplay_image_path(@cosplay_image), notice: "You have updated book successfully."
     else
       render "edit"
@@ -39,7 +44,7 @@ class Public::CosplayImagesController < ApplicationController
     if @cosplay_image.save
       tags = Vision.get_image_data(@cosplay_image.image)
       tags.each do |tag|
-        
+
         @cosplay_image.tags.create(name: tag)
       end
       redirect_to public_cosplay_image_path(@cosplay_image), notice: "You have created cosplay image successfully."

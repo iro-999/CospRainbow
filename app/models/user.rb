@@ -19,7 +19,7 @@ class User < ApplicationRecord
   end
 
   validates :name, presence: true
-  
+
   # 検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"
