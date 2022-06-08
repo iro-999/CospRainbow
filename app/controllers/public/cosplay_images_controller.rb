@@ -4,7 +4,6 @@ class Public::CosplayImagesController < ApplicationController
     @cosplay_image = CosplayImage.new
   end
 
-
   def show
     @cosplay_image = CosplayImage.find(params[:id])
     @tags = @cosplay_image.tags
